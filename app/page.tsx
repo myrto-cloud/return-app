@@ -239,8 +239,9 @@ export default function Home() {
                 <label className={labelClass}>Current annual salary</label>
                 <div className="relative">
                   <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-neutral-400">$</span>
-                  <input type="number" min={0} value={currentSalary} onChange={e => setCurrentSalary(e.target.value)} placeholder="e.g. 95000" className={inputClass + " pl-7"} />
+                  <input type="number" min={0} value={currentSalary} onChange={e => setCurrentSalary(e.target.value)} placeholder="e.g. 95000 (annual)" className={inputClass + " pl-7"} />
                 </div>
+                <p className="mt-1 text-xs text-neutral-500">Enter your total annual salary</p>
               </div>
               <div>
                 <label className={labelClass + " flex justify-between"}>
