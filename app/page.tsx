@@ -194,7 +194,7 @@ export default function Home() {
           </header>
         ) : (
           <header className="mb-8 flex items-center justify-between">
-            <button onClick={handleStartNewScenario} className="text-[11px] tracking-[0.3em] text-neutral-400 hover:text-neutral-600 transition">Return</button>
+            <button onClick={handleStartNewScenario} className="text-[11px] uppercase tracking-[0.3em] text-neutral-400 hover:text-neutral-600 transition">Return</button>
             <span className="text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full border font-medium" style={{ color: GOLD, borderColor: GOLD }}>Journey-aware</span>
           </header>
         )}
