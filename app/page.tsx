@@ -379,7 +379,7 @@ export default function Home() {
         {step === 4 && chapter !== "First leave" && (
           <section className="space-y-6">
             <h2 className="text-xl font-semibold text-neutral-900">Back for round two</h2>
-            <div className="rounded-2xl bg-neutral-100 px-6 py-5 sm:px-8 sm:py-6">
+            <div className="rounded-2xl bg-white px-6 py-5 sm:px-8 sm:py-6" style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
               <p className="text-[10px] font-medium uppercase tracking-widest text-neutral-500">
                 Last time: {chapter} · Path: {pathWithHighestIncome.label} · Net: {currencyFormatter.format(pathWithHighestIncome.netMonthlyAfterChildcare)} · Load: Manageable
               </p>
