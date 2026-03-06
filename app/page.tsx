@@ -306,7 +306,7 @@ export default function Home() {
                 <textarea value={whatMattersMost} onChange={e => setWhatMattersMost(e.target.value)} placeholder="e.g. being present for my child but not losing myself" rows={3} className={inputClass + " resize-none"} />
               </div>
             </div>
-            <div className="flex items-center justify-between gap-4 pt-2">
+            <div className="flex items-center justify-center gap-4 pt-2">
               <p className="max-w-xs text-xs text-neutral-400">Numbers stay on your device except when you ask for an insight. Return is not financial advice.</p>
               <button onClick={() => hasMinimumInputs && setStep(2)} disabled={!hasMinimumInputs}
                 className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition disabled:opacity-40 disabled:cursor-not-allowed"
@@ -353,8 +353,8 @@ export default function Home() {
               })}
             </div>
             <p className="max-w-xs text-xs text-neutral-500">Next, Return will reflect back trade-offs in plain language based on your situation.</p>
-            <div className="flex flex-row flex-wrap items-center gap-3 pt-2">
-              <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">← Back</button>
+            <div className="flex items-center justify-center gap-4 pt-2">
+              <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
               <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
                 Generate insight
               </button>
@@ -369,9 +369,9 @@ export default function Home() {
               <p className="mt-1 text-sm text-neutral-500">This card blends your financial picture with the realities of childcare, flexibility, and the chapter you are in.</p>
             </div>
             <InsightCard loading={isLoadingInsight} err={error} content={insight} onRetry={handleGenerateInsight} />
-            <div className="flex flex-row flex-wrap items-center justify-center gap-3 pt-2">
-              <button type="button" onClick={() => setStep(2)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">← Back</button>
-              <button onClick={handleStartNewScenario} className="text-sm text-neutral-400 hover:text-neutral-600 transition underline-offset-4 hover:underline">Start a new scenario</button>
+            <div className="flex items-center justify-center gap-4 pt-2">
+              <button type="button" onClick={() => setStep(2)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
+              <button onClick={handleStartNewScenario} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-600 hover:border-neutral-400 hover:text-neutral-800 transition">Start a new scenario</button>
             </div>
           </section>
         )}
@@ -397,8 +397,8 @@ export default function Home() {
                 <label className={labelClass}>What do you wish you'd known?</label>
                 <textarea value={whatWishKnown} onChange={e => setWhatWishKnown(e.target.value)} placeholder="e.g. how much the reduced-hours path would actually feel day to day" rows={3} className={inputClass + " resize-none"} />
               </div>
-              <div className="flex flex-row flex-wrap items-center gap-3">
-                <button type="button" onClick={() => setStep(3)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">← Back</button>
+              <div className="flex items-center justify-center gap-4">
+                <button type="button" onClick={() => setStep(3)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
                 <button onClick={handleReEntryInsight} disabled={reEntryLoading}
                   className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition disabled:opacity-40"
                   style={{ background: GOLD, color: "#1a1a1a" }}>
@@ -416,9 +416,9 @@ export default function Home() {
               <p className="mt-1 text-sm text-neutral-500">A reflection on your second chapter, built from what you shared then and now.</p>
             </div>
             <InsightCard loading={reEntryLoading} err={reEntryError} content={reEntryInsight} onRetry={handleReEntryInsight} />
-            <div className="flex flex-row flex-wrap items-center justify-center gap-3 pt-2">
-              <button type="button" onClick={() => setStep(4)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">← Back</button>
-              <button onClick={handleStartNewScenario} className="text-sm text-neutral-400 hover:text-neutral-600 transition underline-offset-4 hover:underline">Start a new scenario</button>
+            <div className="flex items-center justify-center gap-4 pt-2">
+              <button type="button" onClick={() => setStep(4)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
+              <button onClick={handleStartNewScenario} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-600 hover:border-neutral-400 hover:text-neutral-800 transition">Start a new scenario</button>
             </div>
           </section>
         )}
