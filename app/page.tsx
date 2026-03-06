@@ -208,7 +208,7 @@ export default function Home() {
               <div key={`s${stepNum}`} className="flex flex-col items-center gap-1.5">
                 <div
                   className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold transition-all ${isCompleted || isActive ? "text-white" : "border border-neutral-300 text-neutral-400"}`}
-                  style={isCompleted || isActive ? { backgroundColor: isCompleted ? "#d4a843" : GOLD } : undefined}
+                  style={isCompleted || isActive ? { backgroundColor: GOLD } : undefined}
                 >
                   {isCompleted ? (
                     <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
@@ -221,7 +221,7 @@ export default function Home() {
             ];
             if (index < totalSteps - 1) {
               elements.push(
-                <div key={`c${stepNum}`} className="mb-4 h-px flex-1 mx-2 rounded-full" style={{ backgroundColor: step > stepNum ? "#d4a843" : "#e5e5e5" }} />
+                <div key={`c${stepNum}`} className="mb-4 h-px flex-1 mx-2 rounded-full" style={{ backgroundColor: step > stepNum ? "#E8B84B" : "#e5e5e5" }} />
               );
             }
             return elements;
