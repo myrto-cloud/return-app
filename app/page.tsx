@@ -351,7 +351,6 @@ export default function Home() {
                 );
               })}
             </div>
-            <p className="text-xs text-neutral-500">Next, Return will reflect back trade-offs in plain language based on your situation.</p>
             <div className="flex items-center justify-center gap-4 pt-2">
               <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
               <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
@@ -368,10 +367,12 @@ export default function Home() {
               <p className="mt-1 text-sm text-neutral-500">This card blends your financial picture with the realities of childcare, flexibility, and the chapter you are in.</p>
             </div>
             <InsightCard loading={isLoadingInsight} err={error} content={insight} onRetry={handleGenerateInsight} />
-            <div className="flex items-center justify-center gap-4 pt-2">
-              <button type="button" onClick={() => setStep(2)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
-              <button onClick={handleStartNewScenario} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-600 hover:border-neutral-400 hover:text-neutral-800 transition">Start a new scenario</button>
-            </div>
+            {!isLoadingInsight && insight !== null && (
+              <div className="flex items-center justify-center gap-4 pt-2">
+                <button type="button" onClick={() => setStep(2)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
+                <button onClick={handleStartNewScenario} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide" style={{ background: "#E8B84B", color: "#1a1a1a" }}>Start a new scenario</button>
+              </div>
+            )}
           </section>
         )}
 
@@ -417,7 +418,7 @@ export default function Home() {
             <InsightCard loading={reEntryLoading} err={reEntryError} content={reEntryInsight} onRetry={handleReEntryInsight} />
             <div className="flex items-center justify-center gap-4 pt-2">
               <button type="button" onClick={() => setStep(4)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
-              <button onClick={handleStartNewScenario} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-600 hover:border-neutral-400 hover:text-neutral-800 transition">Start a new scenario</button>
+              <button onClick={handleStartNewScenario} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide" style={{ background: "#E8B84B", color: "#1a1a1a" }}>Start a new scenario</button>
             </div>
           </section>
         )}
