@@ -157,9 +157,9 @@ export default function Home() {
   ].slice(0, totalSteps);
 
   const pathCardStyles: Record<PathKey, { bg: string; badge: string; badgeText: string; numColor: string; textColor: string }> = {
-    fullTime: { bg: "bg-black", badge: "text-black", badgeText: "Stability", numColor: "text-neutral-900", textColor: "text-neutral-500" },
-    reducedHours: { bg: "bg-white border border-neutral-200", badge: "text-black", badgeText: "Space", numColor: "text-neutral-900", textColor: "text-neutral-500" },
-    freelance: { bg: "bg-white border border-neutral-200", badge: "text-black", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500" },
+    fullTime: { bg: "bg-white border border-neutral-200", badge: "text-neutral-700", badgeText: "Stability", numColor: "text-neutral-900", textColor: "text-neutral-500" },
+    reducedHours: { bg: "bg-white border border-neutral-200", badge: "text-neutral-700", badgeText: "Space", numColor: "text-neutral-900", textColor: "text-neutral-500" },
+    freelance: { bg: "bg-white border border-neutral-200", badge: "text-neutral-700", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500" },
   };
 
   const InsightCard = ({ loading, err, content, onRetry }: { loading: boolean; err: string | null; content: string | null; onRetry: () => void }) => (
@@ -336,7 +336,7 @@ export default function Home() {
                       <div className="flex items-center justify-between gap-2">
                         <h3 className={`text-sm font-semibold ${dark ? "text-white" : "text-neutral-900"}`}>{path.label}</h3>
                         <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider ${s.badge}`}
-                          style={{ backgroundColor: "#E8B84B" }}>
+                          style={{ backgroundColor: "#F5D98A" }}>
                           {s.badgeText}
                         </span>
                       </div>
