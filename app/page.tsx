@@ -319,12 +319,9 @@ export default function Home() {
 
         {step === 2 && (
           <section className="space-y-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="text-xl font-semibold text-neutral-900">Compare your next 36 months</h2>
-                <p className="mt-1 text-sm text-neutral-500">These projections use your current salary as a base. Partner income (if any) is included in net monthly after childcare.</p>
-              </div>
-              <button onClick={() => setStep(1)} className="shrink-0 text-xs text-neutral-400 hover:text-neutral-700 transition underline-offset-4 hover:underline">Edit inputs</button>
+            <div>
+              <h2 className="text-xl font-semibold text-neutral-900">Compare your next 36 months</h2>
+              <p className="mt-1 text-sm text-neutral-500">These projections use your current salary as a base. Partner income (if any) is included in net monthly after childcare.</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               {paths.map(path => {
@@ -355,8 +352,9 @@ export default function Home() {
                 );
               })}
             </div>
-            <div className="flex items-center justify-between gap-4 pt-2">
-              <p className="max-w-xs text-xs text-neutral-500">Next, Return will reflect back trade-offs in plain language based on your situation.</p>
+            <p className="max-w-xs text-xs text-neutral-500">Next, Return will reflect back trade-offs in plain language based on your situation.</p>
+            <div className="flex flex-row flex-wrap items-center gap-3 pt-2">
+              <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">← Back</button>
               <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
                 Generate insight
               </button>
@@ -366,24 +364,21 @@ export default function Home() {
 
         {step === 3 && (
           <section className="space-y-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="text-xl font-semibold text-neutral-900">A reflection on where you are now</h2>
-                <p className="mt-1 text-sm text-neutral-500">This card blends your financial picture with the realities of childcare, flexibility, and the chapter you are in.</p>
-              </div>
-              <button onClick={() => setStep(2)} className="shrink-0 text-xs text-neutral-400 hover:text-neutral-700 transition underline-offset-4 hover:underline">Back to paths</button>
+            <div>
+              <h2 className="text-xl font-semibold text-neutral-900">A reflection on where you are now</h2>
+              <p className="mt-1 text-sm text-neutral-500">This card blends your financial picture with the realities of childcare, flexibility, and the chapter you are in.</p>
             </div>
             <InsightCard loading={isLoadingInsight} err={error} content={insight} onRetry={handleGenerateInsight} />
-            <div className="flex justify-center pt-2"><button onClick={handleStartNewScenario} className="text-sm text-neutral-400 hover:text-neutral-600 transition underline-offset-4 hover:underline">Start a new scenario</button></div>
+            <div className="flex flex-row flex-wrap items-center justify-center gap-3 pt-2">
+              <button type="button" onClick={() => setStep(2)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">← Back</button>
+              <button onClick={handleStartNewScenario} className="text-sm text-neutral-400 hover:text-neutral-600 transition underline-offset-4 hover:underline">Start a new scenario</button>
+            </div>
           </section>
         )}
 
         {step === 4 && chapter !== "First leave" && (
           <section className="space-y-6">
-            <div className="flex items-center justify-between gap-4">
-              <h2 className="text-xl font-semibold text-neutral-900">Back for round two</h2>
-              <button onClick={() => setStep(3)} className="text-xs text-neutral-400 hover:text-neutral-700 transition underline-offset-4 hover:underline">Back to insight</button>
-            </div>
+            <h2 className="text-xl font-semibold text-neutral-900">Back for round two</h2>
             <div className="rounded-2xl bg-neutral-100 px-6 py-5 sm:px-8 sm:py-6">
               <p className="text-[10px] font-medium uppercase tracking-widest text-neutral-500">
                 Last time: {chapter} · Path: {pathWithHighestIncome.label} · Net: {currencyFormatter.format(pathWithHighestIncome.netMonthlyAfterChildcare)} · Load: Manageable
@@ -402,26 +397,29 @@ export default function Home() {
                 <label className={labelClass}>What do you wish you'd known?</label>
                 <textarea value={whatWishKnown} onChange={e => setWhatWishKnown(e.target.value)} placeholder="e.g. how much the reduced-hours path would actually feel day to day" rows={3} className={inputClass + " resize-none"} />
               </div>
-              <button onClick={handleReEntryInsight} disabled={reEntryLoading}
-                className="w-full rounded-full py-3 text-xs font-semibold tracking-widest transition disabled:opacity-40"
-                style={{ background: GOLD, color: "#1a1a1a" }}>
-                {reEntryLoading ? "Thinking…" : "See what's different now"}
-              </button>
+              <div className="flex flex-row flex-wrap items-center gap-3">
+                <button type="button" onClick={() => setStep(3)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">← Back</button>
+                <button onClick={handleReEntryInsight} disabled={reEntryLoading}
+                  className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition disabled:opacity-40"
+                  style={{ background: GOLD, color: "#1a1a1a" }}>
+                  {reEntryLoading ? "Thinking…" : "See what's different now"}
+                </button>
+              </div>
             </div>
           </section>
         )}
 
         {step === 5 && chapter !== "First leave" && (
           <section className="space-y-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h2 className="text-xl font-semibold text-neutral-900">What's different this time</h2>
-                <p className="mt-1 text-sm text-neutral-500">A reflection on your second chapter, built from what you shared then and now.</p>
-              </div>
-              <button onClick={() => setStep(4)} className="shrink-0 text-xs text-neutral-400 hover:text-neutral-700 transition underline-offset-4 hover:underline">Back to round two</button>
+            <div>
+              <h2 className="text-xl font-semibold text-neutral-900">What's different this time</h2>
+              <p className="mt-1 text-sm text-neutral-500">A reflection on your second chapter, built from what you shared then and now.</p>
             </div>
             <InsightCard loading={reEntryLoading} err={reEntryError} content={reEntryInsight} onRetry={handleReEntryInsight} />
-            <div className="flex justify-center pt-2"><button onClick={handleStartNewScenario} className="text-sm text-neutral-400 hover:text-neutral-600 transition underline-offset-4 hover:underline">Start a new scenario</button></div>
+            <div className="flex flex-row flex-wrap items-center justify-center gap-3 pt-2">
+              <button type="button" onClick={() => setStep(4)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">← Back</button>
+              <button onClick={handleStartNewScenario} className="text-sm text-neutral-400 hover:text-neutral-600 transition underline-offset-4 hover:underline">Start a new scenario</button>
+            </div>
           </section>
         )}
 
