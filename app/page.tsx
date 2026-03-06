@@ -416,10 +416,12 @@ export default function Home() {
               <p className="mt-1 text-sm text-neutral-500">A reflection on your second chapter, built from what you shared then and now.</p>
             </div>
             <InsightCard loading={reEntryLoading} err={reEntryError} content={reEntryInsight} onRetry={handleReEntryInsight} />
-            <div className="flex items-center justify-center gap-4 pt-2">
-              <button type="button" onClick={() => setStep(4)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
-              <button onClick={handleStartNewScenario} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide" style={{ background: "#E8B84B", color: "#1a1a1a" }}>Start a new scenario</button>
-            </div>
+            {!reEntryLoading && reEntryInsight !== null && (
+              <div className="flex items-center justify-center gap-4 pt-2">
+                <button type="button" onClick={() => setStep(4)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
+                <button onClick={handleStartNewScenario} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide" style={{ background: "#E8B84B", color: "#1a1a1a" }}>Start a new scenario</button>
+              </div>
+            )}
           </section>
         )}
 
