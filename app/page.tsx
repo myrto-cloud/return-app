@@ -352,6 +352,7 @@ export default function Home() {
                 );
               })}
             </div>
+            <p className="text-center text-xs text-neutral-400 mt-2">Figures are pre-tax. Your take-home will vary based on your tax situation.</p>
             <div className="flex items-center justify-center gap-4 pt-2">
               <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
               <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
