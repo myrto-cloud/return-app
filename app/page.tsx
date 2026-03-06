@@ -199,7 +199,7 @@ export default function Home() {
           </header>
         ) : (
           <header className="mb-8 flex items-center justify-between">
-            <button onClick={handleStartNewScenario} className="text-[11px] uppercase tracking-[0.3em] text-neutral-400 hover:text-neutral-600 transition">Return</button>
+            <button onClick={handleStartNewScenario} className="text-[11px] tracking-[0.3em] text-neutral-400 hover:text-neutral-600 transition">Return</button>
             <span className="text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full border font-medium" style={{ color: GOLD, borderColor: GOLD }}>Journey-aware</span>
           </header>
         )}
@@ -314,7 +314,7 @@ export default function Home() {
             <div className="flex items-center justify-between gap-4 pt-2">
               <p className="max-w-xs text-xs text-neutral-400">Numbers stay on your device except when you ask for an insight. Return is not financial advice.</p>
               <button onClick={() => hasMinimumInputs && setStep(2)} disabled={!hasMinimumInputs}
-                className="rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-widest transition disabled:opacity-40 disabled:cursor-not-allowed"
+                className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{ background: hasMinimumInputs ? GOLD : "#d4d4d4", color: hasMinimumInputs ? "#1a1a1a" : "#888" }}>
                 See my paths
               </button>
@@ -363,7 +363,7 @@ export default function Home() {
             </div>
             <div className="flex items-center justify-between gap-4 pt-2">
               <p className="max-w-xs text-xs text-neutral-500">Next, Return will reflect back trade-offs in plain language based on your situation.</p>
-              <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
+              <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
                 Generate insight
               </button>
             </div>
@@ -408,7 +408,7 @@ export default function Home() {
                 <textarea value={whatWishKnown} onChange={e => setWhatWishKnown(e.target.value)} placeholder="e.g. how much the reduced-hours path would actually feel day to day" rows={3} className={inputClass + " resize-none"} />
               </div>
               <button onClick={handleReEntryInsight} disabled={reEntryLoading}
-                className="w-full rounded-full py-3 text-xs font-semibold uppercase tracking-widest transition disabled:opacity-40"
+                className="w-full rounded-full py-3 text-xs font-semibold tracking-widest transition disabled:opacity-40"
                 style={{ background: GOLD, color: "#1a1a1a" }}>
                 {reEntryLoading ? "Thinking…" : "See what's different now"}
               </button>
