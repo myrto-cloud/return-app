@@ -156,10 +156,10 @@ export default function Home() {
     { label: "Round two" }, { label: "Memory" },
   ].slice(0, totalSteps);
 
-  const pathCardStyles: Record<PathKey, { bg: string; badge: string; badgeText: string; numColor: string; textColor: string }> = {
-    fullTime: { bg: "bg-white border border-neutral-200", badge: "text-neutral-700", badgeText: "Stability", numColor: "text-neutral-900", textColor: "text-neutral-500" },
-    reducedHours: { bg: "bg-white border border-neutral-200", badge: "text-neutral-700", badgeText: "Space", numColor: "text-neutral-900", textColor: "text-neutral-500" },
-    freelance: { bg: "bg-white border border-neutral-200", badge: "text-neutral-700", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500" },
+  const pathCardStyles: Record<PathKey, { bg: string; badge: string; badgeText: string; numColor: string; textColor: string; titleColor: string }> = {
+    fullTime: { bg: "bg-white border border-neutral-200", badge: "text-neutral-700", badgeText: "Stability", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
+    reducedHours: { bg: "bg-white border border-neutral-200", badge: "text-neutral-700", badgeText: "Space", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
+    freelance: { bg: "bg-white border border-neutral-200", badge: "text-neutral-700", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
   };
 
   const InsightCard = ({ loading, err, content, onRetry }: { loading: boolean; err: string | null; content: string | null; onRetry: () => void }) => (
@@ -329,12 +329,11 @@ export default function Home() {
             <div className="grid gap-4 sm:grid-cols-3">
               {paths.map(path => {
                 const s = pathCardStyles[path.key];
-                const dark = path.key === "fullTime";
                 return (
                   <article key={path.key} className={`flex flex-col justify-between rounded-2xl p-5 ${s.bg}`}>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between gap-2">
-                        <h3 className={`text-sm font-semibold ${dark ? "text-white" : "text-neutral-900"}`}>{path.label}</h3>
+                        <h3 className={`text-sm font-semibold ${s.titleColor}`}>{path.label}</h3>
                         <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider ${s.badge}`}
                           style={{ backgroundColor: "#F5D98A" }}>
                           {s.badgeText}
