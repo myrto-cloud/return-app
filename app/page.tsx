@@ -162,7 +162,7 @@ export default function Home() {
     freelance: { bg: "bg-white border border-neutral-200", badge: "text-neutral-600", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500" },
   };
 
-  const InsightCard = ({ loading, err, content, onRetry, showReset }: { loading: boolean; err: string | null; content: string | null; onRetry: () => void; showReset: boolean }) => (
+  const InsightCard = ({ loading, err, content, onRetry }: { loading: boolean; err: string | null; content: string | null; onRetry: () => void }) => (
     <div className="rounded-2xl p-7 sm:p-9" style={{ background: "white", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
       {loading && (
         <div className="flex flex-col items-center justify-center gap-3 py-10 text-sm text-neutral-500">
@@ -178,11 +178,6 @@ export default function Home() {
       )}
       {!loading && !err && content && renderInsightContent(content)}
       {!loading && !err && !content && <p className="text-sm text-neutral-500">Generating your reflection…</p>}
-      {showReset && (
-        <div className="mt-8 flex justify-center border-t border-amber-100 pt-6">
-          <button onClick={handleStartNewScenario} className="text-xs text-neutral-400 underline-offset-4 hover:text-neutral-600 hover:underline">Start a new scenario</button>
-        </div>
-      )}
     </div>
   );
 
@@ -379,7 +374,8 @@ export default function Home() {
               </div>
               <button onClick={() => setStep(2)} className="shrink-0 text-xs text-neutral-400 hover:text-neutral-700 transition underline-offset-4 hover:underline">Back to paths</button>
             </div>
-            <InsightCard loading={isLoadingInsight} err={error} content={insight} onRetry={handleGenerateInsight} showReset={chapter === "First leave"} />
+            <InsightCard loading={isLoadingInsight} err={error} content={insight} onRetry={handleGenerateInsight} />
+            <div className="flex justify-center pt-2"><button onClick={handleStartNewScenario} className="text-sm text-neutral-400 hover:text-neutral-600 transition underline-offset-4 hover:underline">Start a new scenario</button></div>
           </section>
         )}
 
@@ -425,7 +421,8 @@ export default function Home() {
               </div>
               <button onClick={() => setStep(4)} className="shrink-0 text-xs text-neutral-400 hover:text-neutral-700 transition underline-offset-4 hover:underline">Back to round two</button>
             </div>
-            <InsightCard loading={reEntryLoading} err={reEntryError} content={reEntryInsight} onRetry={handleReEntryInsight} showReset={true} />
+            <InsightCard loading={reEntryLoading} err={reEntryError} content={reEntryInsight} onRetry={handleReEntryInsight} />
+            <div className="flex justify-center pt-2"><button onClick={handleStartNewScenario} className="text-sm text-neutral-400 hover:text-neutral-600 transition underline-offset-4 hover:underline">Start a new scenario</button></div>
           </section>
         )}
 
