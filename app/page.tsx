@@ -163,7 +163,7 @@ export default function Home() {
   };
 
   const InsightCard = ({ loading, err, content, onRetry, showReset }: { loading: boolean; err: string | null; content: string | null; onRetry: () => void; showReset: boolean }) => (
-    <div className="rounded-2xl p-7 sm:p-9" style={{ background: "#FDF8EE", borderLeft: `4px solid ${GOLD}` }}>
+    <div className="rounded-2xl p-7 sm:p-9" style={{ background: "white", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
       {loading && (
         <div className="flex flex-col items-center justify-center gap-3 py-10 text-sm text-neutral-500">
           <div className="h-6 w-6 animate-spin rounded-full border-2 border-neutral-200" style={{ borderTopColor: GOLD }} />
