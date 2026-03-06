@@ -306,8 +306,8 @@ export default function Home() {
                 <textarea value={whatMattersMost} onChange={e => setWhatMattersMost(e.target.value)} placeholder="e.g. being present for my child but not losing myself" rows={3} className={inputClass + " resize-none"} />
               </div>
             </div>
+            <p className="text-xs text-neutral-400 pt-2">Numbers stay on your device except when you ask for an insight. Return is not financial advice.</p>
             <div className="flex items-center justify-center gap-4 pt-2">
-              <p className="text-xs text-neutral-400">Numbers stay on your device except when you ask for an insight. Return is not financial advice.</p>
               <button onClick={() => hasMinimumInputs && setStep(2)} disabled={!hasMinimumInputs}
                 className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{ background: hasMinimumInputs ? GOLD : "#d4d4d4", color: hasMinimumInputs ? "#1a1a1a" : "#888" }}>
