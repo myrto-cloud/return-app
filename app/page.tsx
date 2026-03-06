@@ -157,9 +157,9 @@ export default function Home() {
   ].slice(0, totalSteps);
 
   const pathCardStyles: Record<PathKey, { bg: string; badge: string; badgeText: string; numColor: string; textColor: string }> = {
-    fullTime: { bg: "bg-neutral-900", badge: "bg-neutral-700 text-neutral-300", badgeText: "Stability", numColor: "text-white", textColor: "text-neutral-400" },
+    fullTime: { bg: "bg-white border border-neutral-200", badge: "text-neutral-600", badgeText: "Stability", numColor: "text-neutral-900", textColor: "text-neutral-500" },
     reducedHours: { bg: "bg-white border border-neutral-200", badge: "text-amber-700", badgeText: "Space", numColor: "text-neutral-900", textColor: "text-neutral-500" },
-    freelance: { bg: "bg-[#F7F5F0] border border-neutral-200", badge: "text-neutral-600", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500" },
+    freelance: { bg: "bg-white border border-neutral-200", badge: "text-neutral-600", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500" },
   };
 
   const InsightCard = ({ loading, err, content, onRetry, showReset }: { loading: boolean; err: string | null; content: string | null; onRetry: () => void; showReset: boolean }) => (
