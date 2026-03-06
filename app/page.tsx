@@ -232,7 +232,7 @@ export default function Home() {
           <section className="space-y-8">
             <div>
               <h2 className="text-xl font-semibold text-neutral-900">Start with your current reality</h2>
-              <p className="mt-1.5 text-sm text-neutral-500 max-w-xl">Return looks at your earnings, childcare, and flexibility to map out the next 36 months across different paths.</p>
+              <p className="mt-1.5 text-sm text-neutral-500">Return looks at your earnings, childcare, and flexibility to map out the next 36 months across different paths.</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
@@ -307,7 +307,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center justify-center gap-4 pt-2">
-              <p className="max-w-xs text-xs text-neutral-400">Numbers stay on your device except when you ask for an insight. Return is not financial advice.</p>
+              <p className="text-xs text-neutral-400">Numbers stay on your device except when you ask for an insight. Return is not financial advice.</p>
               <button onClick={() => hasMinimumInputs && setStep(2)} disabled={!hasMinimumInputs}
                 className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{ background: hasMinimumInputs ? GOLD : "#d4d4d4", color: hasMinimumInputs ? "#1a1a1a" : "#888" }}>
@@ -352,7 +352,7 @@ export default function Home() {
                 );
               })}
             </div>
-            <p className="max-w-xs text-xs text-neutral-500">Next, Return will reflect back trade-offs in plain language based on your situation.</p>
+            <p className="text-xs text-neutral-500">Next, Return will reflect back trade-offs in plain language based on your situation.</p>
             <div className="flex items-center justify-center gap-4 pt-2">
               <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
               <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
