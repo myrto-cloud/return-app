@@ -241,7 +241,6 @@ export default function Home() {
                   <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-neutral-400">$</span>
                   <input type="number" min={0} value={currentSalary} onChange={e => setCurrentSalary(e.target.value)} placeholder="e.g. 95000 (annual)" className={inputClass + " pl-7"} />
                 </div>
-                <p className="mt-1 text-xs text-neutral-500">Enter your total annual salary</p>
               </div>
               <div>
                 <label className={labelClass + " flex justify-between"}>
@@ -347,11 +346,11 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                    <p className={`mt-4 text-[11px] leading-relaxed ${s.textColor}`}>Assumes your salary adjusts to this path from now for the next three years.</p>
-                  </article>
+                    </article>
                 );
               })}
             </div>
+            <p className="text-center text-xs text-neutral-400 mt-4">Projections assume your salary adjusts to each path for the next 3 years.</p>
             <p className="text-center text-xs text-neutral-400 mt-2">Figures are pre-tax. Your take-home will vary based on your tax situation.</p>
             <div className="flex items-center justify-center gap-4 pt-2">
               <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
