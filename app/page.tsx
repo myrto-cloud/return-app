@@ -187,7 +187,7 @@ export default function Home() {
 
         {step === 1 ? (
           <header className="mb-10">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-neutral-400 mb-1">Return</p>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-neutral-400 mb-1">RETURN</p>
             <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
               AI career companion<br />for working mothers
             </h1>
