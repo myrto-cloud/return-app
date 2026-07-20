@@ -225,7 +225,7 @@ Keep the tone warm, grounded, and non-prescriptive. Avoid telling her what to ch
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "claude-sonnet-4-6",
         max_tokens: 400,
         temperature: 0.7,
         messages: [
