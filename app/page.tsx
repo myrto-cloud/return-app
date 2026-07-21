@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useMemo, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 type EmployerFlexibility = "High" | "Medium" | "Low";
 type Chapter = "First leave" | "Second leave" | "Third leave";
 type LeaveTiming =
@@ -27,6 +27,11 @@ const GOLD = "#E8B84B";
 const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 const inputClass = "w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition focus:border-neutral-400 focus:ring-0 placeholder:text-neutral-400";
 const labelClass = "block text-[11px] font-medium uppercase tracking-widest text-neutral-500 mb-1.5";
+const INSIGHT_LOADING_MESSAGES = [
+  "Reading your situation and where you are in your leave.",
+  "Weighing your concerns against the path numbers.",
+  "Putting it together.",
+];
 
 export default function Home() {
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
@@ -162,9 +167,28 @@ export default function Home() {
     freelance: { bg: "bg-white border border-neutral-200", badge: "text-neutral-600", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
   };
 
-  const InsightCard = ({ loading, err, content, onRetry }: { loading: boolean; err: string | null; content: string | null; onRetry: () => void }) => (
+  const InsightCard = ({ loading, err, content, onRetry, loadingMessages }: { loading: boolean; err: string | null; content: string | null; onRetry: () => void; loadingMessages?: string[] }) => {
+    const [messageIndex, setMessageIndex] = useState(0);
+
+    useEffect(() => {
+      if (!loading || !loadingMessages?.length) {
+        setMessageIndex(0);
+        return;
+      }
+      const interval = setInterval(() => {
+        setMessageIndex((i) => (i + 1) % loadingMessages.length);
+      }, 2500);
+      return () => clearInterval(interval);
+    }, [loading, loadingMessages]);
+
+    return (
     <div className="rounded-2xl p-7 sm:p-9" style={{ background: "white", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
-      {loading && (
+      {loading && loadingMessages && (
+        <div className="flex items-center justify-center py-10 px-4">
+          <p className="text-center text-sm leading-relaxed text-neutral-600">{loadingMessages[messageIndex]}</p>
+        </div>
+      )}
+      {loading && !loadingMessages && (
         <div className="flex flex-col items-center justify-center gap-3 py-10 text-sm text-neutral-500">
           <div className="h-6 w-6 animate-spin rounded-full border-2 border-neutral-200" style={{ borderTopColor: GOLD }} />
           <p>Inviting Claude into the conversation…</p>
@@ -179,7 +203,8 @@ export default function Home() {
       {!loading && !err && content && renderInsightContent(content)}
       {!loading && !err && !content && <p className="text-sm text-neutral-500">Generating your reflection…</p>}
     </div>
-  );
+    );
+  };
 
   return (
     <div className="min-h-screen bg-[#F7F5F0] px-4 py-12 font-sans">
@@ -352,6 +377,9 @@ export default function Home() {
             </div>
             <p className="text-center text-xs text-neutral-400 mt-4">Projections assume your salary adjusts to each path for the next 3 years.</p>
             <p className="text-center text-xs text-neutral-400 mt-2">Figures are pre-tax. Your take-home will vary based on your tax situation.</p>
+            <p className="mx-auto mt-6 max-w-md text-center text-sm leading-relaxed text-neutral-500">
+              I&apos;ll reflect on your situation, concerns, and the path numbers together. My insight is a starting point, not a prescription.
+            </p>
             <div className="flex items-center justify-center gap-4 pt-2">
               <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
               <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
@@ -367,7 +395,7 @@ export default function Home() {
               <h2 className="text-xl font-semibold text-neutral-900">A reflection on where you are now</h2>
               <p className="mt-1 text-sm text-neutral-500">This card blends your financial picture with the realities of childcare, flexibility, and the chapter you are in.</p>
             </div>
-            <InsightCard loading={isLoadingInsight} err={error} content={insight} onRetry={handleGenerateInsight} />
+            <InsightCard loading={isLoadingInsight} err={error} content={insight} onRetry={handleGenerateInsight} loadingMessages={INSIGHT_LOADING_MESSAGES} />
             {!isLoadingInsight && insight !== null && (
               <div className="flex items-center justify-center gap-4 pt-2">
                 <button type="button" onClick={() => setStep(2)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
@@ -416,7 +444,7 @@ export default function Home() {
               <h2 className="text-xl font-semibold text-neutral-900">What's different this time</h2>
               <p className="mt-1 text-sm text-neutral-500">A reflection on your second chapter, built from what you shared then and now.</p>
             </div>
-            <InsightCard loading={reEntryLoading} err={reEntryError} content={reEntryInsight} onRetry={handleReEntryInsight} />
+            <InsightCard loading={reEntryLoading} err={reEntryError} content={reEntryInsight} onRetry={handleReEntryInsight} loadingMessages={INSIGHT_LOADING_MESSAGES} />
             {!reEntryLoading && reEntryInsight !== null && (
               <div className="flex items-center justify-center gap-4 pt-2">
                 <button type="button" onClick={() => setStep(4)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
