@@ -403,13 +403,16 @@ export default function Home() {
                 );
               })}
             </div>
-            <div className="space-y-2">
-              <p className="text-center text-xs text-neutral-400">Projections assume your salary adjusts to each path for the next 3 years.</p>
-              <p className="text-center text-xs text-neutral-400">Figures are pre-tax. Your take-home will vary based on your tax situation.</p>
+            <div className="mx-auto max-w-md">
+              <div className="space-y-1.5">
+                <p className="text-center text-[11px] leading-snug text-neutral-400">Projections assume your salary adjusts to each path for the next 3 years.</p>
+                <p className="text-center text-[11px] leading-snug text-neutral-400">Figures are pre-tax. Your take-home will vary based on your tax situation.</p>
+              </div>
+              <div className="mx-auto my-5 h-px w-16 bg-neutral-200" aria-hidden="true" />
+              <p className="text-center text-sm leading-relaxed text-neutral-500">
+                I&apos;ll reflect on your situation, concerns, and the path numbers together. My insight is a starting point, not a prescription.
+              </p>
             </div>
-            <p className="mx-auto max-w-md text-center text-sm leading-relaxed text-neutral-500">
-              I&apos;ll reflect on your situation, concerns, and the path numbers together. My insight is a starting point, not a prescription.
-            </p>
             <div className="flex items-center justify-center gap-4 pt-2">
               <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
               <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
