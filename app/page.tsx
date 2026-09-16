@@ -184,8 +184,19 @@ export default function Home() {
     return (
     <div className="rounded-2xl p-7 sm:p-9" style={{ background: "white", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
       {loading && loadingMessages && (
-        <div className="flex items-center justify-center py-10 px-4">
-          <p className="text-center text-sm leading-relaxed text-neutral-600">{loadingMessages[messageIndex]}</p>
+        <div className="flex flex-col items-center justify-center gap-8 py-10 px-4">
+          <p
+            key={messageIndex}
+            className="insight-loading-message text-center text-sm leading-relaxed text-neutral-600"
+          >
+            {loadingMessages[messageIndex]}
+          </p>
+          <div className="w-full max-w-sm space-y-3" aria-hidden="true">
+            <div className="h-3 w-full animate-pulse rounded-full bg-neutral-100" />
+            <div className="h-3 w-[88%] animate-pulse rounded-full bg-neutral-100 [animation-delay:150ms]" />
+            <div className="h-3 w-[72%] animate-pulse rounded-full bg-neutral-100 [animation-delay:300ms]" />
+            <div className="mt-2 h-3 w-[40%] animate-pulse rounded-full bg-[#F5E8C8]" />
+          </div>
         </div>
       )}
       {loading && !loadingMessages && (
@@ -201,7 +212,12 @@ export default function Home() {
         </div>
       )}
       {!loading && !err && content && renderInsightContent(content)}
-      {!loading && !err && !content && <p className="text-sm text-neutral-500">Generating your reflection…</p>}
+      {!loading && !err && !content && (
+        <div className="space-y-3 text-sm text-neutral-500">
+          <p>Nothing came back this time.</p>
+          <button onClick={onRetry} className="text-xs text-neutral-600 underline-offset-4 hover:underline">Try again</button>
+        </div>
+      )}
     </div>
     );
   };

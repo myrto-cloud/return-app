@@ -36,6 +36,21 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+@keyframes insight-message-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.insight-loading-message {
+  animation: insight-message-fade 0.45s ease-out;
+}
+
 /* Custom select appearance with chevron */
 select {
   appearance: none;
