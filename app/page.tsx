@@ -27,6 +27,10 @@ const GOLD = "#E8B84B";
 const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 const inputClass = "w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition focus:border-neutral-400 focus:ring-0 placeholder:text-neutral-400";
 const labelClass = "block text-[11px] font-medium uppercase tracking-widest text-neutral-500 mb-1.5";
+const stepSectionClass = "space-y-6";
+const stepTitleClass = "text-xl font-semibold text-neutral-900";
+const stepSubtitleClass = "mt-2 text-sm leading-relaxed text-neutral-500";
+const contentCardClass = "rounded-2xl p-6 sm:p-8";
 const INSIGHT_LOADING_MESSAGES = [
   "Reading your situation and where you are in your leave.",
   "Weighing your concerns against the path numbers.",
@@ -182,9 +186,9 @@ export default function Home() {
     }, [loading, loadingMessages]);
 
     return (
-    <div className="rounded-2xl p-7 sm:p-9" style={{ background: "white", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
+    <div className={contentCardClass} style={{ background: "white", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
       {loading && loadingMessages && (
-        <div className="flex flex-col items-center justify-center gap-8 py-10 px-4">
+        <div className="flex flex-col items-center justify-center gap-6 py-6 px-2">
           <p
             key={messageIndex}
             className="insight-loading-message text-center text-sm leading-relaxed text-neutral-600"
@@ -200,7 +204,7 @@ export default function Home() {
         </div>
       )}
       {loading && !loadingMessages && (
-        <div className="flex flex-col items-center justify-center gap-3 py-10 text-sm text-neutral-500">
+        <div className="flex flex-col items-center justify-center gap-3 py-6 text-sm text-neutral-500">
           <div className="h-6 w-6 animate-spin rounded-full border-2 border-neutral-200" style={{ borderTopColor: GOLD }} />
           <p>Inviting Claude into the conversation…</p>
         </div>
@@ -270,12 +274,12 @@ export default function Home() {
         </div>
 
         {step === 1 && (
-          <section className="space-y-8">
+          <section className={stepSectionClass}>
             <div>
-              <h2 className="text-xl font-semibold text-neutral-900">Start with your current reality</h2>
-              <p className="mt-1.5 text-sm text-neutral-500">Return looks at your earnings, childcare, and flexibility to map out the next 36 months across different paths.</p>
+              <h2 className={stepTitleClass}>Start with your current reality</h2>
+              <p className={stepSubtitleClass}>Return looks at your earnings, childcare, and flexibility to map out the next 36 months across different paths.</p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label className={labelClass}>Current annual salary</label>
                 <div className="relative">
@@ -337,7 +341,7 @@ export default function Home() {
                 </select>
               </div>
             </div>
-            <div className="border-t border-neutral-200 pt-6 grid gap-4 sm:grid-cols-2">
+            <div className="border-t border-neutral-200 pt-6 grid gap-5 sm:grid-cols-2">
               <div>
                 <label className={labelClass}>What's your biggest concern right now?</label>
                 <textarea value={biggestConcern} onChange={e => setBiggestConcern(e.target.value)} placeholder="e.g. I'm worried about losing momentum in my career" rows={3} className={inputClass + " resize-none"} />
@@ -358,16 +362,16 @@ export default function Home() {
         )}
 
         {step === 2 && (
-          <section className="space-y-6">
+          <section className={stepSectionClass}>
             <div>
-              <h2 className="text-xl font-semibold text-neutral-900">Compare your next 36 months</h2>
-              <p className="mt-1 text-sm text-neutral-500">These projections use your current salary as a base. Partner income (if any) is included in net monthly after childcare.</p>
+              <h2 className={stepTitleClass}>Compare your next 36 months</h2>
+              <p className={stepSubtitleClass}>These projections use your current salary as a base. Partner income (if any) is included in net monthly after childcare.</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               {paths.map(path => {
                 const s = pathCardStyles[path.key];
                 return (
-                  <article key={path.key} className={`flex flex-col justify-between rounded-2xl p-5 ${s.bg}`}>
+                  <article key={path.key} className={`flex flex-col justify-between ${contentCardClass} ${s.bg}`}>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between gap-2">
                         <h3 className={`text-sm font-semibold ${s.titleColor}`}>{path.label}</h3>
@@ -378,11 +382,11 @@ export default function Home() {
                       </div>
                       <div className="space-y-3">
                         <div>
-                          <p className={`text-[10px] uppercase tracking-widest font-medium ${s.textColor}`}>36-month total</p>
+                          <p className={`text-[11px] uppercase tracking-widest font-medium ${s.textColor}`}>36-month total</p>
                           <p className={`mt-0.5 text-2xl font-bold tracking-tight ${s.numColor}`}>{currencyFormatter.format(path.thirtySixMonthTotal)}</p>
                         </div>
                         <div>
-                          <p className={`text-[10px] uppercase tracking-widest font-medium ${s.textColor}`}>Net monthly after childcare</p>
+                          <p className={`text-[11px] uppercase tracking-widest font-medium ${s.textColor}`}>Net monthly after childcare</p>
                           <p className={`mt-0.5 text-base font-semibold ${s.numColor}`}>{currencyFormatter.format(path.netMonthlyAfterChildcare)}</p>
                         </div>
                       </div>
@@ -391,9 +395,11 @@ export default function Home() {
                 );
               })}
             </div>
-            <p className="text-center text-xs text-neutral-400 mt-4">Projections assume your salary adjusts to each path for the next 3 years.</p>
-            <p className="text-center text-xs text-neutral-400 mt-2">Figures are pre-tax. Your take-home will vary based on your tax situation.</p>
-            <p className="mx-auto mt-6 max-w-md text-center text-sm leading-relaxed text-neutral-500">
+            <div className="space-y-2">
+              <p className="text-center text-xs text-neutral-400">Projections assume your salary adjusts to each path for the next 3 years.</p>
+              <p className="text-center text-xs text-neutral-400">Figures are pre-tax. Your take-home will vary based on your tax situation.</p>
+            </div>
+            <p className="mx-auto max-w-md text-center text-sm leading-relaxed text-neutral-500">
               I&apos;ll reflect on your situation, concerns, and the path numbers together. My insight is a starting point, not a prescription.
             </p>
             <div className="flex items-center justify-center gap-4 pt-2">
@@ -406,10 +412,10 @@ export default function Home() {
         )}
 
         {step === 3 && (
-          <section className="space-y-6">
+          <section className={stepSectionClass}>
             <div>
-              <h2 className="text-xl font-semibold text-neutral-900">A reflection on where you are now</h2>
-              <p className="mt-1 text-sm text-neutral-500">This card blends your financial picture with the realities of childcare, flexibility, and the chapter you are in.</p>
+              <h2 className={stepTitleClass}>A reflection on where you are now</h2>
+              <p className={stepSubtitleClass}>This card blends your financial picture with the realities of childcare, flexibility, and the chapter you are in.</p>
             </div>
             <InsightCard loading={isLoadingInsight} err={error} content={insight} onRetry={handleGenerateInsight} loadingMessages={INSIGHT_LOADING_MESSAGES} />
             {!isLoadingInsight && insight !== null && (
@@ -422,10 +428,12 @@ export default function Home() {
         )}
 
         {step === 4 && chapter !== "First leave" && (
-          <section className="space-y-6">
-            <h2 className="text-xl font-semibold text-neutral-900">Back for round two</h2>
-            <div className="rounded-2xl bg-white px-6 py-5 sm:px-8 sm:py-6" style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
-              <p className="text-[10px] font-medium uppercase tracking-widest text-neutral-500">
+          <section className={stepSectionClass}>
+            <div>
+              <h2 className={stepTitleClass}>Back for round two</h2>
+            </div>
+            <div className={`${contentCardClass} bg-white`} style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
+              <p className="text-[11px] font-medium uppercase tracking-widest text-neutral-500">
                 Last time: {chapter} · Path: {pathWithHighestIncome.label} · Net: {currencyFormatter.format(pathWithHighestIncome.netMonthlyAfterChildcare)} · Load: Manageable
               </p>
               <div className="my-3 border-t border-neutral-200" />
@@ -433,7 +441,7 @@ export default function Home() {
                 You're back. Last time you chose {pathWithHighestIncome.label}. A lot has changed — childcare costs are higher, and you're navigating this with a toddler at home now. But you also have something you didn't have before: real data. Let's use that this time.
               </p>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div>
                 <label className={labelClass}>What's changed since last time?</label>
                 <textarea value={whatChanged} onChange={e => setWhatChanged(e.target.value)} placeholder="e.g. childcare is more expensive, I have a toddler now" rows={3} className={inputClass + " resize-none"} />
@@ -442,7 +450,7 @@ export default function Home() {
                 <label className={labelClass}>What do you wish you'd known?</label>
                 <textarea value={whatWishKnown} onChange={e => setWhatWishKnown(e.target.value)} placeholder="e.g. how much the reduced-hours path would actually feel day to day" rows={3} className={inputClass + " resize-none"} />
               </div>
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center gap-4 pt-2">
                 <button type="button" onClick={() => setStep(3)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
                 <button onClick={handleReEntryInsight} disabled={reEntryLoading}
                   className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition disabled:opacity-40"
@@ -455,10 +463,10 @@ export default function Home() {
         )}
 
         {step === 5 && chapter !== "First leave" && (
-          <section className="space-y-6">
+          <section className={stepSectionClass}>
             <div>
-              <h2 className="text-xl font-semibold text-neutral-900">What's different this time</h2>
-              <p className="mt-1 text-sm text-neutral-500">A reflection on your second chapter, built from what you shared then and now.</p>
+              <h2 className={stepTitleClass}>What's different this time</h2>
+              <p className={stepSubtitleClass}>A reflection on your second chapter, built from what you shared then and now.</p>
             </div>
             <InsightCard loading={reEntryLoading} err={reEntryError} content={reEntryInsight} onRetry={handleReEntryInsight} loadingMessages={INSIGHT_LOADING_MESSAGES} />
             {!reEntryLoading && reEntryInsight !== null && (
