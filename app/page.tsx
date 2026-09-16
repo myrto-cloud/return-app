@@ -241,7 +241,6 @@ export default function Home() {
         ) : (
           <header className="mb-8 flex items-center justify-between">
             <button onClick={handleStartNewScenario} className="text-[11px] uppercase tracking-[0.3em] text-neutral-400 hover:text-neutral-600 transition">Return</button>
-            <span className="text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full border font-medium" style={{ color: GOLD, borderColor: GOLD }}>Journey-aware</span>
           </header>
         )}
 
@@ -253,7 +252,15 @@ export default function Home() {
             const elements: ReactNode[] = [
               <div key={`s${stepNum}`} className="flex flex-col items-center gap-1.5">
                 <div
-                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold transition-all ${isCompleted || isActive ? "text-white" : "border border-neutral-300 text-neutral-400"}`}
+                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold transition-all ${
+                    isCompleted || isActive ? "text-white" : "border border-neutral-300 text-neutral-400"
+                  } ${
+                    isActive
+                      ? "scale-110 shadow-[0_2px_10px_rgba(45,35,20,0.22)]"
+                      : isCompleted
+                        ? "shadow-[0_1px_5px_rgba(45,35,20,0.14)]"
+                        : ""
+                  }`}
                   style={isActive ? { backgroundColor: GOLD } : isCompleted ? { backgroundColor: "#D1D0CB" } : undefined}
                 >
                   {isCompleted ? (
