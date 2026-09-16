@@ -28,9 +28,10 @@ const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", cu
 const inputClass = "w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-900 outline-none transition focus:border-neutral-400 focus:ring-0 placeholder:text-neutral-400";
 const labelClass = "block text-[11px] font-medium uppercase tracking-widest text-neutral-500 mb-1.5";
 const stepSectionClass = "space-y-6";
-const stepTitleClass = "text-xl font-semibold text-neutral-900";
+const stepTitleClass = "font-display text-xl font-semibold tracking-tight text-neutral-900";
 const stepSubtitleClass = "mt-2 text-sm leading-relaxed text-neutral-500";
-const contentCardClass = "rounded-2xl p-6 sm:p-8";
+const contentCardClass =
+  "rounded-2xl p-6 sm:p-8 bg-[#FCFAF6] shadow-[0_2px_18px_rgba(45,35,20,0.06)]";
 const INSIGHT_LOADING_MESSAGES = [
   "Reading your situation and where you are in your leave.",
   "Weighing your concerns against the path numbers.",
@@ -165,10 +166,10 @@ export default function Home() {
     { label: "Round two" }, { label: "Memory" },
   ].slice(0, totalSteps);
 
-  const pathCardStyles: Record<PathKey, { bg: string; badge: string; badgeText: string; numColor: string; textColor: string; titleColor: string }> = {
-    fullTime: { bg: "bg-white border border-neutral-200", badge: "text-neutral-600", badgeText: "Stability", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
-    reducedHours: { bg: "bg-white border border-neutral-200", badge: "text-neutral-600", badgeText: "Space", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
-    freelance: { bg: "bg-white border border-neutral-200", badge: "text-neutral-600", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
+  const pathCardStyles: Record<PathKey, { badge: string; badgeText: string; numColor: string; textColor: string; titleColor: string }> = {
+    fullTime: { badge: "text-neutral-600", badgeText: "Stability", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
+    reducedHours: { badge: "text-neutral-600", badgeText: "Space", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
+    freelance: { badge: "text-neutral-600", badgeText: "Autonomy", numColor: "text-neutral-900", textColor: "text-neutral-500", titleColor: "text-neutral-900" },
   };
 
   const InsightCard = ({ loading, err, content, onRetry, loadingMessages }: { loading: boolean; err: string | null; content: string | null; onRetry: () => void; loadingMessages?: string[] }) => {
@@ -186,7 +187,7 @@ export default function Home() {
     }, [loading, loadingMessages]);
 
     return (
-    <div className={contentCardClass} style={{ background: "white", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
+    <div className={contentCardClass}>
       {loading && loadingMessages && (
         <div className="flex flex-col items-center justify-center gap-6 py-6 px-2">
           <p
@@ -233,7 +234,7 @@ export default function Home() {
         {step === 1 ? (
           <header className="mb-10">
             <p className="text-[11px] uppercase tracking-[0.3em] text-neutral-400 mb-1">RETURN</p>
-            <h1 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
+            <h1 className="font-display text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
               AI career companion<br />for working mothers
             </h1>
           </header>
@@ -371,7 +372,7 @@ export default function Home() {
               {paths.map(path => {
                 const s = pathCardStyles[path.key];
                 return (
-                  <article key={path.key} className={`flex flex-col justify-between ${contentCardClass} ${s.bg}`}>
+                  <article key={path.key} className={`flex flex-col justify-between ${contentCardClass}`}>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between gap-2">
                         <h3 className={`text-sm font-semibold ${s.titleColor}`}>{path.label}</h3>
@@ -432,7 +433,7 @@ export default function Home() {
             <div>
               <h2 className={stepTitleClass}>Back for round two</h2>
             </div>
-            <div className={`${contentCardClass} bg-white`} style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}>
+            <div className={contentCardClass}>
               <p className="text-[11px] font-medium uppercase tracking-widest text-neutral-500">
                 Last time: {chapter} · Path: {pathWithHighestIncome.label} · Net: {currencyFormatter.format(pathWithHighestIncome.netMonthlyAfterChildcare)} · Load: Manageable
               </p>
