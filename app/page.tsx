@@ -373,7 +373,9 @@ export default function Home() {
           <section className={stepSectionClass}>
             <div>
               <h2 className={stepTitleClass}>Compare your next 36 months</h2>
-              <p className={stepSubtitleClass}>These projections use your current salary as a base. Partner income (if any) is included in net monthly after childcare.</p>
+              <p className={stepSubtitleClass}>
+                These projections use your current salary as a base. Partner income (if any) is included in net monthly after childcare. I&apos;ll reflect on your situation, concerns, and the path numbers together. My insight is a starting point, not a prescription.
+              </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               {paths.map(path => {
@@ -403,17 +405,11 @@ export default function Home() {
                 );
               })}
             </div>
-            <div className="w-full">
-              <p className="whitespace-nowrap text-left text-[11px] leading-snug text-neutral-400">
-                Projections assume your salary adjusts to each path for the next 3 years.
-                <span className="mx-2 text-neutral-300" aria-hidden="true">·</span>
-                Figures are pre-tax. Your take-home will vary based on your tax situation.
-              </p>
-              <div className="my-5 h-px w-16 bg-neutral-200" aria-hidden="true" />
-              <p className="text-left text-sm leading-relaxed text-neutral-500">
-                I&apos;ll reflect on your situation, concerns, and the path numbers together. My insight is a starting point, not a prescription.
-              </p>
-            </div>
+            <p className="w-full whitespace-nowrap text-left text-[11px] leading-snug text-neutral-400">
+              Projections assume your salary adjusts to each path for the next 3 years.
+              <span className="mx-2 text-neutral-300" aria-hidden="true">·</span>
+              Figures are pre-tax. Your take-home will vary based on your tax situation.
+            </p>
             <div className="flex items-center justify-center gap-4 pt-2">
               <button type="button" onClick={() => setStep(1)} className="rounded-full px-6 py-3 text-sm font-medium tracking-wide border border-neutral-300 text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition">Back</button>
               <button onClick={handleGenerateInsight} className="rounded-full px-6 py-3 text-xs font-semibold tracking-widest transition hover:brightness-105" style={{ background: GOLD, color: "#1a1a1a" }}>
