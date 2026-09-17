@@ -403,13 +403,13 @@ export default function Home() {
                 );
               })}
             </div>
-            <div className="mx-auto max-w-md">
+            <div className="w-full">
               <div className="space-y-1.5">
-                <p className="text-center text-[11px] leading-snug text-neutral-400">Projections assume your salary adjusts to each path for the next 3 years.</p>
-                <p className="text-center text-[11px] leading-snug text-neutral-400">Figures are pre-tax. Your take-home will vary based on your tax situation.</p>
+                <p className="whitespace-nowrap text-left text-[11px] leading-snug text-neutral-400">Projections assume your salary adjusts to each path for the next 3 years.</p>
+                <p className="whitespace-nowrap text-left text-[11px] leading-snug text-neutral-400">Figures are pre-tax. Your take-home will vary based on your tax situation.</p>
               </div>
-              <div className="mx-auto my-5 h-px w-16 bg-neutral-200" aria-hidden="true" />
-              <p className="text-center text-sm leading-relaxed text-neutral-500">
+              <div className="my-5 h-px w-16 bg-neutral-200" aria-hidden="true" />
+              <p className="text-left text-sm leading-relaxed text-neutral-500">
                 I&apos;ll reflect on your situation, concerns, and the path numbers together. My insight is a starting point, not a prescription.
               </p>
             </div>
